@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:design="http://flowable.org/design" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://flowable.org/test" design:palette="flowable-process-palette">
+  <process id="employeeOnboarding" name="EmployeeOnboarding" isExecutable="true" flowable:candidateStarterGroups="flowableUser">
+    <extensionElements>
+      <design:stencilid><![CDATA[BPMNDiagram]]></design:stencilid>
+      <design:language><![CDATA[English]]></design:language>
+      <design:creationdate><![CDATA[2020-11-25T18:52:15.025Z]]></design:creationdate>
+      <design:modificationdate><![CDATA[2020-12-05T00:53:09.560Z]]></design:modificationdate>
+    </extensionElements>
+    <startEvent id="startnoneevent1" flowable:initiator="initiator" flowable:formKey="start_form" flowable:formFieldValidation="false">
+      <extensionElements>
+        <flowable:work-form-field-validation><![CDATA[false]]></flowable:work-form-field-validation>
+        <design:stencilid><![CDATA[StartNoneEvent]]></design:stencilid>
+      </extensionElements>
+    </startEvent>
+    <userTask id="formTask1" name="Capture HR Data" flowable:owner="${hr}" flowable:formKey="hRForm" flowable:formFieldValidation="false">
+      <extensionElements>
+        <flowable:task-candidates-type><![CDATA[all]]></flowable:task-candidates-type>
+        <design:stencilid><![CDATA[FormTask]]></design:stencilid>
+        <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sequenceFlow1" sourceRef="startnoneevent1" targetRef="formTask1">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="formTask2" name="CaptureFinanceData" flowable:owner="${finance}" flowable:formKey="financeForm" flowable:formFieldValidation="false">
+      <extensionElements>
+        <flowable:task-candidates-type><![CDATA[all]]></flowable:task-candidates-type>
+        <design:stencilid><![CDATA[FormTask]]></design:stencilid>
+        <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sequenceFlow2" sourceRef="formTask1" targetRef="formTask2">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="formTask3" name="CaptureCompetenceData" flowable:owner="${resource_management}" flowable:formKey="resourceManagementForm" flowable:formFieldValidation="false">
+      <extensionElements>
+        <flowable:task-candidates-type><![CDATA[all]]></flowable:task-candidates-type>
+        <design:stencilid><![CDATA[FormTask]]></design:stencilid>
+        <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sequenceFlow3" sourceRef="formTask2" targetRef="formTask3">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+    <userTask id="formTask4" name="Approve" flowable:owner="${executive_director}" flowable:formKey="executiveDirectorForm" flowable:formFieldValidation="false">
+      <extensionElements>
+        <flowable:formProperty id="First Name" name="First Name" type="string" expression="${firstName}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="Gender" name="Gender" type="string" expression="${gender}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="Last Name" name="Last Name" type="string" expression="${lastName}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="Age" name="Age" type="string" expression="${age}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="HighestQualification" name="HighestQualification" type="string" expression="${highestQualification}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="Institute" name="Institute" type="string" expression="${institute}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="Degree" name="Degree" type="string" expression="${degree}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="CGPA" name="CGPA" type="string" expression="${cGPA}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="Primary Skill" name="Primary Skill" type="string" expression="${skill_1}" writable="false"></flowable:formProperty>
+        <flowable:formProperty id="Secondary Skill" name="Secondary Skill" type="string" expression="${skill_2}" writable="false"></flowable:formProperty>
+        <flowable:static-form-key><![CDATA[executiveDirectorForm]]></flowable:static-form-key>
+        <flowable:task-candidates-type><![CDATA[all]]></flowable:task-candidates-type>
+        <design:stencilid><![CDATA[FormTask]]></design:stencilid>
+        <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="sequenceFlow4" sourceRef="formTask3" targetRef="formTask4">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+    <startEvent id="startTimerEvent1" name="Wait 2 mins" isInterrupting="false">
+      <extensionElements>
+        <design:stencilid><![CDATA[StartTimerEvent]]></design:stencilid>
+      </extensionElements>
+      <timerEventDefinition>
+        <timeCycle>R5/PT2M</timeCycle>
+      </timerEventDefinition>
+    </startEvent>
+    <serviceTask id="httpTask1" name="HTTP task" flowable:type="http">
+      <extensionElements>
+        <flowable:field name="requestMethod">
+          <flowable:string><![CDATA[GET]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="requestUrl">
+          <flowable:string><![CDATA[http://localhost:8081/event-dispatch/notifytimeout?processName=employeeOnboarding&currentAssignee=ExecutiveDirector]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="disallowRedirects">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="responseVariableName">
+          <flowable:string><![CDATA[res]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="ignoreException">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveRequestVariables">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveResponseParameters">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveResponseParametersTransient">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveResponseVariableAsJson">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <design:stencilid><![CDATA[HttpTask]]></design:stencilid>
+        <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="sequenceFlow7" sourceRef="startTimerEvent1" targetRef="httpTask1">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+    <serviceTask id="serviceTask1" name="Persist Data" flowable:class="com.ignite.kss.bpm.demo.task.PostApprovalTask">
+      <extensionElements>
+        <design:stencilid><![CDATA[ServiceTask]]></design:stencilid>
+        <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+      </extensionElements>
+    </serviceTask>
+    <exclusiveGateway id="exclusive_Databased_Gateway1" name="All OK?" default="sequenceFlow11">
+      <extensionElements>
+        <design:stencilid><![CDATA[Exclusive_Databased_Gateway]]></design:stencilid>
+      </extensionElements>
+    </exclusiveGateway>
+    <sequenceFlow id="sequenceFlow9" sourceRef="formTask4" targetRef="exclusive_Databased_Gateway1">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="sequenceFlow10" name="Yes" sourceRef="exclusive_Databased_Gateway1" targetRef="serviceTask1">
+      <extensionElements>
+        <flowable:condition group="true" match="all" targetAttribute="condition">
+          <flowable:condition sourceVariableType="variable" sourceName="hRDataComplete" sourceType="string" operator="equals" targetVariableType="value" targetValue="Y" targetType="string"></flowable:condition>
+          <flowable:condition sourceVariableType="variable" sourceName="financeDataComplete" sourceType="string" operator="equals" targetVariableType="value" targetValue="Y" targetType="string"></flowable:condition>
+          <flowable:condition sourceVariableType="variable" sourceName="competenceDataComplete" sourceType="string" operator="equals" targetVariableType="value" targetValue="Y" targetType="string"></flowable:condition>
+        </flowable:condition>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${vars:equals(hRDataComplete, 'Y') && vars:equals(financeDataComplete, 'Y') && vars:equals(competenceDataComplete, 'Y')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusive_Databased_Gateway2" name="HR Data Incomplete?" default="sequenceFlow13">
+      <extensionElements>
+        <design:stencilid><![CDATA[Exclusive_Databased_Gateway]]></design:stencilid>
+      </extensionElements>
+    </exclusiveGateway>
+    <sequenceFlow id="sequenceFlow11" name="No" sourceRef="exclusive_Databased_Gateway1" targetRef="exclusive_Databased_Gateway2">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+        <design:defaultflow><![CDATA[true]]></design:defaultflow>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="sequenceFlow12" name="No" sourceRef="exclusive_Databased_Gateway2" targetRef="formTask1">
+      <extensionElements>
+        <flowable:condition group="true" match="all" targetAttribute="condition">
+          <flowable:condition sourceVariableType="variable" sourceName="hRDataComplete" sourceType="string" operator="notEquals" targetVariableType="value" targetValue="Y" targetType="string"></flowable:condition>
+        </flowable:condition>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${vars:notEquals(hRDataComplete, 'Y')}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="exclusive_Databased_Gateway3" name="FinanceDataComplete?" default="sequenceFlow15">
+      <extensionElements>
+        <design:stencilid><![CDATA[Exclusive_Databased_Gateway]]></design:stencilid>
+      </extensionElements>
+    </exclusiveGateway>
+    <sequenceFlow id="sequenceFlow14" sourceRef="exclusive_Databased_Gateway3" targetRef="formTask2">
+      <extensionElements>
+        <flowable:condition group="true" match="all" targetAttribute="condition">
+          <flowable:condition sourceVariableType="variable" sourceName="financeDataComplete" sourceType="string" operator="notEquals" targetVariableType="value" targetValue="Y" targetType="string"></flowable:condition>
+        </flowable:condition>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${vars:notEquals(financeDataComplete, 'Y')}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sequenceFlow15" sourceRef="exclusive_Databased_Gateway3" targetRef="formTask3">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+        <design:defaultflow><![CDATA[true]]></design:defaultflow>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="sequenceFlow13" sourceRef="exclusive_Databased_Gateway2" targetRef="exclusive_Databased_Gateway3">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+        <design:defaultflow><![CDATA[true]]></design:defaultflow>
+      </extensionElements>
+    </sequenceFlow>
+    <endEvent id="endNoneEvent2">
+      <extensionElements>
+        <design:stencilid><![CDATA[EndNoneEvent]]></design:stencilid>
+      </extensionElements>
+    </endEvent>
+    <serviceTask id="httpTask2" name="HTTP task" flowable:type="http">
+      <extensionElements>
+        <flowable:field name="requestMethod">
+          <flowable:string><![CDATA[POST]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="requestUrl">
+          <flowable:string><![CDATA[http://localhost:8081/event-dispatch//sendEmail]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="requestHeaders">
+          <flowable:string><![CDATA[Content-Type:application/json]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="requestBody">
+          <flowable:string><![CDATA[{
+
+     "host" : "smtp.gmail.com",
+     "port" : "465",
+     "to" : "sayantan.sb@gmail.com",
+     "from" : "sayantandeutsche@gmail.com",
+     "enableSSl" : "true",
+     "auth" : "true",
+     "subject" : "Completion of employee onboarding",
+     "messageText" : "An employee was successfully onboarded.",
+     "password" : "Kolkata@1"
+}]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="disallowRedirects">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="ignoreException">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveRequestVariables">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveResponseParameters">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveResponseParametersTransient">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <flowable:field name="saveResponseVariableAsJson">
+          <flowable:string><![CDATA[false]]></flowable:string>
+        </flowable:field>
+        <design:stencilid><![CDATA[HttpTask]]></design:stencilid>
+        <design:stencilsuperid><![CDATA[Task]]></design:stencilsuperid>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="sequenceFlow20" sourceRef="serviceTask1" targetRef="httpTask2">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+    <sequenceFlow id="sequenceFlow21" sourceRef="httpTask2" targetRef="endNoneEvent2">
+      <extensionElements>
+        <design:stencilid><![CDATA[SequenceFlow]]></design:stencilid>
+      </extensionElements>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_employeeOnboarding">
+    <bpmndi:BPMNPlane bpmnElement="employeeOnboarding" id="BPMNPlane_employeeOnboarding">
+      <bpmndi:BPMNShape bpmnElement="startnoneevent1" id="BPMNShape_startnoneevent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="117.0" y="261.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="formTask1" id="BPMNShape_formTask1">
+        <omgdc:Bounds height="80.0" width="100.0" x="225.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="formTask2" id="BPMNShape_formTask2">
+        <omgdc:Bounds height="80.0" width="119.0" x="405.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="formTask3" id="BPMNShape_formTask3">
+        <omgdc:Bounds height="80.0" width="150.0" x="615.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="formTask4" id="BPMNShape_formTask4">
+        <omgdc:Bounds height="80.0" width="100.0" x="841.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startTimerEvent1" id="BPMNShape_startTimerEvent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="935.0" y="230.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="httpTask1" id="BPMNShape_httpTask1">
+        <omgdc:Bounds height="80.0" width="100.0" x="900.0" y="76.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="serviceTask1" id="BPMNShape_serviceTask1">
+        <omgdc:Bounds height="80.0" width="100.0" x="1170.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusive_Databased_Gateway1" id="BPMNShape_exclusive_Databased_Gateway1">
+        <omgdc:Bounds height="40.0" width="40.0" x="1020.0" y="256.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusive_Databased_Gateway2" id="BPMNShape_exclusive_Databased_Gateway2">
+        <omgdc:Bounds height="40.0" width="40.0" x="1020.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusive_Databased_Gateway3" id="BPMNShape_exclusive_Databased_Gateway3">
+        <omgdc:Bounds height="40.0" width="40.0" x="1020.0" y="465.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endNoneEvent2" id="BPMNShape_endNoneEvent2">
+        <omgdc:Bounds height="28.0" width="28.0" x="1402.0" y="420.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="httpTask2" id="BPMNShape_httpTask2">
+        <omgdc:Bounds height="80.0" width="100.0" x="1366.0" y="236.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow3" id="BPMNEdge_sequenceFlow3">
+        <omgdi:waypoint x="523.95" y="276.0"></omgdi:waypoint>
+        <omgdi:waypoint x="614.999999999997" y="276.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow4" id="BPMNEdge_sequenceFlow4">
+        <omgdi:waypoint x="764.9499999999999" y="276.0"></omgdi:waypoint>
+        <omgdi:waypoint x="841.0" y="276.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow1" id="BPMNEdge_sequenceFlow1">
+        <omgdi:waypoint x="146.94999910629258" y="276.0"></omgdi:waypoint>
+        <omgdi:waypoint x="225.0" y="276.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow2" id="BPMNEdge_sequenceFlow2">
+        <omgdi:waypoint x="324.9499999999142" y="276.0"></omgdi:waypoint>
+        <omgdi:waypoint x="404.99999999993724" y="276.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow11" id="BPMNEdge_sequenceFlow11">
+        <omgdi:waypoint x="1040.4077669902913" y="295.53271096023275"></omgdi:waypoint>
+        <omgdi:waypoint x="1040.0959134615384" y="360.09615384615375"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow10" id="BPMNEdge_sequenceFlow10">
+        <omgdi:waypoint x="1059.4976130653256" y="276.44692737430165"></omgdi:waypoint>
+        <omgdi:waypoint x="1169.9999999999911" y="276.13913649025073"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow21" id="BPMNEdge_sequenceFlow21">
+        <omgdi:waypoint x="1416.0" y="315.95000000000005"></omgdi:waypoint>
+        <omgdi:waypoint x="1416.0" y="420.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow20" id="BPMNEdge_sequenceFlow20">
+        <omgdi:waypoint x="1269.95" y="276.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1366.0" y="276.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow9" id="BPMNEdge_sequenceFlow9">
+        <omgdi:waypoint x="940.9499999999999" y="276.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1020.0" y="276.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow7" id="BPMNEdge_sequenceFlow7">
+        <omgdi:waypoint x="950.0" y="230.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="155.95"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow15" id="BPMNEdge_sequenceFlow15">
+        <omgdi:waypoint x="1020.5" y="485.5"></omgdi:waypoint>
+        <omgdi:waypoint x="690.0" y="485.5"></omgdi:waypoint>
+        <omgdi:waypoint x="690.0" y="315.95000000000005"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow14" id="BPMNEdge_sequenceFlow14">
+        <omgdi:waypoint x="1020.5" y="485.5"></omgdi:waypoint>
+        <omgdi:waypoint x="464.5" y="485.5"></omgdi:waypoint>
+        <omgdi:waypoint x="464.5" y="315.95000000000005"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow13" id="BPMNEdge_sequenceFlow13">
+        <omgdi:waypoint x="1040.4086538461538" y="399.53191642651296"></omgdi:waypoint>
+        <omgdi:waypoint x="1040.095" y="465.0952380952381"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sequenceFlow12" id="BPMNEdge_sequenceFlow12">
+        <omgdi:waypoint x="1020.5" y="380.5"></omgdi:waypoint>
+        <omgdi:waypoint x="275.0" y="380.5"></omgdi:waypoint>
+        <omgdi:waypoint x="275.0" y="315.95000000000005"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

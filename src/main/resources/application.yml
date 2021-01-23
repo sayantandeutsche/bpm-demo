@@ -1,0 +1,29 @@
+server:
+  port: 8081
+spring:
+  main:
+    allow-bean-definition-overriding: false
+
+flowable:
+  mail:
+    server:
+      default-from: sayantan.sb@gmail.com
+      host: smtp.gmail.com
+      port: 587
+      use-ssl: true
+      use-tls: true
+      username: sayantan.sb@gmail.com
+      password: P0ps1cle
+      ssl-port: 465
+
+
+mail:
+  smtp:
+    host: smtp.gmail.com
+    port: 587
+    from: sayantan.sb@gmail.com
+    auth: true
+    user: sayantan.sb@gmail.com
+    password: P0ps1cle
+
+
